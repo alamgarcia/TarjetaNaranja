@@ -1,6 +1,7 @@
 package com.example.tarjetanaranja
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         Dexter.withActivity(this)
             .withPermissions(
                 Manifest.permission.CAMERA,
@@ -33,10 +36,20 @@ class MainActivity : AppCompatActivity() {
                 }
             }).check()
 
+
+        var myPreferences = "myPrefs"
+        var sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE)
+        var amvext = sharedPreferences.getString("amvext", "2102")
+        amvext_txt.setText(amvext)
+
         login_btn.setOnClickListener {
+            val editor = sharedPreferences.edit()
+            editor.putString("amvext", amvext_txt.text.toString())
+            editor.apply()
             val intent = Intent(this, Home::class.java)
-            finish()
             startActivity(intent)
+            finish()
+
 
         }
     }

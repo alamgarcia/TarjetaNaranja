@@ -14,14 +14,14 @@ import android.webkit.WebViewClient
  * A simple [Fragment] subclass.
  *
  */
-class InicioFragment : Fragment() {
+class promosfragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view: View = inflater!!.inflate(R.layout.fragment_inicio, container, false)
+        val view: View = inflater!!.inflate(R.layout.fragment_promosfragment, container, false)
         var mWebView: WebView
-        mWebView = view.findViewById(R.id.webview) as WebView
-        mWebView.loadUrl("https://www.naranja.com/")
+        mWebView = view.findViewById(R.id.webview2) as WebView
+        mWebView.loadUrl("https://www.naranja.com/para-vos/promociones")
 
         // Enable Javascript
         var webSettings = mWebView.settings
@@ -33,7 +33,7 @@ class InicioFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): InicioFragment = InicioFragment()
+        fun newInstance(): promosfragment = promosfragment()
     }
 
 }

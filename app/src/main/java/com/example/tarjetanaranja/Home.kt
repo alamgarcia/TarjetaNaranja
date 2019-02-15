@@ -27,7 +27,8 @@ class Home : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                textMessage.setText(R.string.title_dashboard)
+                val homeamv_fg = promosfragment.newInstance()
+                openFragment(homeamv_fg)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
@@ -41,14 +42,16 @@ class Home : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title = "Atencion a Clientes"
+
         setContentView(R.layout.activity_home)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        textMessage = findViewById(R.id.message)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         obtenertoken()
-
+        val homeamv_fg = Contacto.newInstance()
+        openFragment(homeamv_fg)
 
     }
 

@@ -61,7 +61,11 @@ class LlamadaVideo : AppCompatActivity(), HostnameVerifier, X509TrustManager, Us
     //Creacion Aplicacion
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val intent = intent
+        val topic = intent.getStringExtra("topic")
         //Layout
+        title = topic
+
         setContentView(R.layout.activity_llamada_video)
         //Opcion para evitar que la pantalla s eapague durante la llamada
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -147,7 +151,7 @@ class LlamadaVideo : AppCompatActivity(), HostnameVerifier, X509TrustManager, Us
             var myPreferences = "myPrefs"
             var sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE)
             //Obtenemos el numero del PreferenceManager
-            var numero = sharedPreferences.getString("numero", "2681322102")
+            var numero = sharedPreferences.getString("amvext", "2102")
             //Obtenemos los extras de la actividad anterior para la localizacion
             val intent = intent
             val topic = intent.getStringExtra("topic")
@@ -166,7 +170,8 @@ class LlamadaVideo : AppCompatActivity(), HostnameVerifier, X509TrustManager, Us
             //Asignamos el UserToUser to Info
             mSession.contextId = "$topic"
             //Asiganmos el numero
-            mSession.remoteAddress = numero
+            mSession.remoteAddress = "268132$numero"
+            Log.d("AMV", numero)
             //Iniciamos la llamada
             mSession.start()
 
